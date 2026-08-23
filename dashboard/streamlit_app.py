@@ -688,6 +688,11 @@ def clean_skill_gaps(
         []
     )
 
+    projects = profile.get(
+        "projects",
+        []
+    )
+
     evidence_parts.extend(
         str(item)
         for item in profile_skills
@@ -696,6 +701,11 @@ def clean_skill_gaps(
     evidence_parts.extend(
         str(item)
         for item in experience
+    )
+
+    evidence_parts.extend(
+        str(item)
+        for item in projects
     )
 
     evidence_parts.extend(
@@ -2087,14 +2097,13 @@ if candidates is not None:
                         "**Matching Skills**"
                     )
 
-                    st.markdown(
+                    st.html(
                         make_skill_tags(
                             candidate.get(
                                 "matching_skills",
                                 []
                             )
-                        ),
-                        unsafe_allow_html=True
+                        )
                     )
 
 
@@ -2114,12 +2123,11 @@ if candidates is not None:
                         )
                     )
 
-                    st.markdown(
+                    st.html(
                         make_skill_tags(
                             cleaned_missing,
                             missing=True
-                        ),
-                        unsafe_allow_html=True
+                        )
                     )
 
 
