@@ -19,7 +19,7 @@ import streamlit as st
 # CONFIGURATION
 # =========================================================
 
-API_URL = "http://localhost:8000"
+API_URL = "https://resume-screener-977g.onrender.com"
 
 st.set_page_config(
     page_title="Smart Resume Screener",
