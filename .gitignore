@@ -1,21 +1,26 @@
-.env
+# Virtual environment
 venv/
 .venv/
 
+# Environment variables
+.env
+
+# Python cache
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
 
-.vscode/
-
+# Database
 *.db
-*.sqlite
-*.sqlite3
 
-*.log
-*.tmp
-
+# Streamlit
 .streamlit/secrets.toml
 
+# Logs
+*.log
+
+# OS files
 .DS_Store
 Thumbs.db
+
+# IDE
+.vscode/
