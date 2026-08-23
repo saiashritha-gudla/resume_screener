@@ -61,107 +61,6 @@ st.markdown(
         color: #29364d;
     }
 
-
-    /* =====================================================
-       FORCE LIGHT CLASSIC CONTROLS
-       Prevent Streamlit Cloud/browser dark theme from
-       making native labels and inputs invisible.
-       ===================================================== */
-
-    .stApp {
-        color-scheme: light;
-    }
-
-    /* Native widget labels */
-    div[data-testid="stWidgetLabel"] p,
-    div[data-testid="stTextInput"] label p,
-    div[data-testid="stTextArea"] label p,
-    div[data-testid="stNumberInput"] label p,
-    div[data-testid="stFileUploader"] label p {
-        color: #29364d !important;
-        opacity: 1 !important;
-    }
-
-    /* Metrics */
-    div[data-testid="stMetric"] {
-        background: #fbf8f1 !important;
-        border: 1px solid #d8c7a8 !important;
-        border-radius: 12px !important;
-        padding: 1rem !important;
-    }
-
-    div[data-testid="stMetricLabel"],
-    div[data-testid="stMetricLabel"] p {
-        color: #6f675b !important;
-        opacity: 1 !important;
-    }
-
-    div[data-testid="stMetricValue"],
-    div[data-testid="stMetricValue"] > div {
-        color: #29364d !important;
-        opacity: 1 !important;
-    }
-
-    /* Text input / text area / number input */
-    div[data-testid="stTextInput"] input,
-    div[data-testid="stTextArea"] textarea,
-    div[data-testid="stNumberInput"] input {
-        background: #fbf8f1 !important;
-        color: #29364d !important;
-        -webkit-text-fill-color: #29364d !important;
-        caret-color: #29364d !important;
-        border-color: #d8c7a8 !important;
-        opacity: 1 !important;
-    }
-
-    div[data-testid="stTextInput"] input::placeholder,
-    div[data-testid="stTextArea"] textarea::placeholder,
-    div[data-testid="stNumberInput"] input::placeholder {
-        color: #756d61 !important;
-        -webkit-text-fill-color: #756d61 !important;
-        opacity: 1 !important;
-    }
-
-    /* BaseWeb wrappers used by Streamlit inputs */
-    div[data-testid="stTextInput"] div[data-baseweb="input"],
-    div[data-testid="stNumberInput"] div[data-baseweb="input"],
-    div[data-testid="stTextArea"] div[data-baseweb="textarea"] {
-        background: #fbf8f1 !important;
-    }
-
-    /* File uploader */
-    div[data-testid="stFileUploader"] {
-        color: #29364d !important;
-    }
-
-    div[data-testid="stFileUploader"] section {
-        background: #f7f2e8 !important;
-        border-color: #d8c7a8 !important;
-    }
-
-    div[data-testid="stFileUploader"] section,
-    div[data-testid="stFileUploader"] section * {
-        color: #29364d !important;
-    }
-
-    /* Number input +/- controls */
-    div[data-testid="stNumberInput"] button {
-        color: #29364d !important;
-        background: #f0e5d1 !important;
-        border-color: #d8c7a8 !important;
-    }
-
-    /* Native Streamlit markdown immediately around widgets */
-    div[data-testid="stMarkdownContainer"] p {
-        color: #29364d;
-    }
-
-    /* Keep muted descriptive text muted */
-    .section-description,
-    .sidebar-label {
-        color: #756d61 !important;
-    }
-
     .block-container {
         max-width: 1220px;
         padding-top: 1.2rem;
@@ -789,6 +688,11 @@ def clean_skill_gaps(
         []
     )
 
+    projects = profile.get(
+        "projects",
+        []
+    )
+
     evidence_parts.extend(
         str(item)
         for item in profile_skills
@@ -797,6 +701,11 @@ def clean_skill_gaps(
     evidence_parts.extend(
         str(item)
         for item in experience
+    )
+
+    evidence_parts.extend(
+        str(item)
+        for item in projects
     )
 
     evidence_parts.extend(
@@ -2188,14 +2097,13 @@ if candidates is not None:
                         "**Matching Skills**"
                     )
 
-                    st.markdown(
+                    st.html(
                         make_skill_tags(
                             candidate.get(
                                 "matching_skills",
                                 []
                             )
-                        ),
-                        unsafe_allow_html=True
+                        )
                     )
 
 
@@ -2215,12 +2123,11 @@ if candidates is not None:
                         )
                     )
 
-                    st.markdown(
+                    st.html(
                         make_skill_tags(
                             cleaned_missing,
                             missing=True
-                        ),
-                        unsafe_allow_html=True
+                        )
                     )
 
 
